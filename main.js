@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, 300);
         // Send to backend
-        fetch('/api/process-audio', {
+        fetch('http://localhost:8000/api/process-audio', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ language, audio_base64 })

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
-from .routes import router as audio_router
+from routes import router as audio_router
 import os
 
 app = FastAPI()
@@ -10,7 +10,7 @@ app = FastAPI()
 # Allow CORS for local frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # В продакшене замените на конкретные домены
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,3 +28,6 @@ app.include_router(audio_router)
 @app.get("/api/ping")
 def ping():
     return JSONResponse(content={"message": "pong"})
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
